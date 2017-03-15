@@ -9,7 +9,7 @@ function ajaxRequest(type, request, callback){
 	
 	var divErrors = document.getElementById('errors')
 	var text = "<div id='erroes' class='alert alert-danger' role='alert'>";
-	text += "<span class='glyphicon glypicon-exclamation-sign'></span>";
+	text += "<span class='glyphicon glyphicon-ban-circle'></span>";
 	
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState !== 4){
@@ -17,22 +17,22 @@ function ajaxRequest(type, request, callback){
 		}
 		switch(xhr.status){
 			case 200:
-				text += "<strong>OK</strong>";
+				text += "<strong> OK</strong>";
 				break;
 			case 400:
-				text += "<strong>Requete incorrecte</strong>";
+				text += "<strong> Requete incorrecte</strong>";
 				break;
 			case 401:
-				text += "<strong>Unauthorized</strong>";
+				text += "<strong> Unauthorized</strong>";
 				break;
 			case 403:
-				text += "<strong>Forbidden </strong>";
+				text += "<strong> Forbidden </strong>";
 				break;
 			case 500:
-				text += "<strong>Internal Error</strong>";
+				text += "<strong> Internal Error</strong>";
 				break;
 			case 404:
-				text += "<strong>Not found</strong>";
+				text += "<strong> Not found</strong>";
 				break;
 		}
 		text +="</div";

@@ -1,10 +1,19 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Document sans titre</title>
-</head>
+<?php
+function  sendHtmlAndJsData($divId, $moduleName){
+	
+}
 
-<body>
-</body>
-</html>
+$urlExplode = explode('/', $_SERVER['PATH_INFO']);
+
+switch($urlExplode[2]){
+	case 'polls':
+		break;
+	case 'list':
+		break;
+	default:
+		header('HTTP/1.1 400 Bad request');
+		exit;
+
+}
+
+?>

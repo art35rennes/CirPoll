@@ -1,4 +1,4 @@
 // JavaScript Document
 'use strict';
 
-ajaxRequest("GET", "test", maFonctionCallback);
+ajaxRequest("GET", "index.html", maFonctionCallback);
