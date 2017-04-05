@@ -1,62 +1,35 @@
-// JavaScript Document
 'use strict';
 
-function ajaxRequest(type, request, callback){
+function ajaxRequest(type, request, callback, data = null) {
 	var xhr;
-	
 	xhr = new XMLHttpRequest();
 	xhr.open(type, request, true);
-	
-	var divErrors = document.getElementById('errors')
-	var text = "<div id='erroes' class='alert alert-danger' role='alert'>";
-	text += "<span class='glyphicon glyphicon-ban-circle'></span>";
-	
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState !== 4){
+	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+	xhr.onreadystatechange = function () {
+		if (xhr.readyState != 4) {
 			return;
 		}
-		switch(xhr.status){
+		switch (xhr.status) {
 			case 200:
-				text += "<strong> OK</strong>";
+				console.log(xhr.responseText);
+				callback(xhr.responseText);
 				break;
-			case 400:
-				text += "<strong> Requete incorrecte</strong>";
-				break;
-			case 401:
-				text += "<strong> Unauthorized</strong>";
-				break;
-			case 403:
-				text += "<strong> Forbidden </strong>";
-				break;
-			case 500:
-				text += "<strong> Internal Error</strong>";
-				break;
-			case 404:
-				text += "<strong> Not found</strong>";
-				break;
+			default:
+				httpErrors(xhr.status);
+
 		}
-		text +="</div";
-		divErrors.innerHTML = text;
 	};
-	
-	xhr.send();
-	
+	xhr.send(data);
 }
 
-function httpErrors(errorNumber){
-	console.log(errorNumber);
+function httpErrors(errorNumber) {
+	document.getElementById('errors').innerHTML = '<div class="alert alert-danger" role="alert"> Une erreur est survenue !!!!!</div>';
 }
 
-estSuperieur(25, 2, maFonctionCallback); // Affiche 'oui'.
-
-function maFonctionCallback(word){
-	console.log(word);
-}
-function estSuperieur(val1, val2, callback){
-	if (val1 > val2){
-		callback('oui');
-	}
-	else{
-		callback('non');
-	}
+function loadHtmlAndJs(ajaxreponse) {
+	var data;
+	data = JSON.parse(ajaxreponse);
+	$('#' + data.divId).load(data.html);
+	$.getScript(data.js);
 }

@@ -1,4 +1,3 @@
-// JavaScript Document
 'use strict';
-
-ajaxRequest("GET", "index.html", maFonctionCallback);
+$.cookie('login', 'cir2');
+ajaxRequest('GET','php/request.php/module/polls/list', loadHtmlAndJs);
