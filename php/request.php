@@ -17,8 +17,14 @@ $request = substr( $_SERVER[ 'PATH_INFO' ], 1 );
 if ( is_dir( '../' . $request ) ) {
 	// We extract the module name.
 	$moduleName = substr( $request, strrpos( $request, '/' ) + 1 );
-	sendHtmlAndJsData( 'polls', $request, $moduleName );
-} else {
+	if($moduleName == "chat"){
+		sendHtmlAndJsData('chat', $request, $moduleName);
+	}
+	else{
+		sendHtmlAndJsData( 'polls', $request, $moduleName );
+
+	} 
+}else {
 	
 	$requestType = $_SERVER['REQUEST_METHOD'];
 	$expl = explode('/', $request);
